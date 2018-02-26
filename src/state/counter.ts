@@ -88,6 +88,7 @@ export function reducer(state = intialState, action: AnyAction) {
       return {
         ...state,
         ...intialState,
+        layout: state.layout,
       }
     },
   }

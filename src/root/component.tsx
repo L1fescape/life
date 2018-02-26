@@ -8,6 +8,7 @@ import { SwitchLayout } from 'life/components/switch-layout'
 import { ResetGame } from 'life/components/reset'
 import { reducer } from 'life/state/counter'
 import { Counter } from 'life/components/counter'
+import { Pallet } from 'life/util/color'
 
 enum Orientation {
   WIDE = 1,
@@ -19,15 +20,6 @@ export interface PublicProps {}
 
 export interface State {
   layout: Orientation
-}
-
-export const pallet = {
-  white: '#F0EADC',
-  lightWhite: '#F6F5F0',
-  black: '#292B2E',
-  green: '#5E6259',
-  gold: '#BB7C3E',
-  beige: '#E7D7C6',
 }
 
 const store = createStore(reducer)
@@ -73,12 +65,12 @@ export class Root extends React.Component<PublicProps, State> {
 function getStyles(layout: Orientation) {
   return StyleSheet.create({
     root: {
-      backgroundColor: pallet.black,
+      backgroundColor: Pallet.black,
       flexGrow: 1,
       flexDirection: layout === Orientation.WIDE ? 'row' : 'column',
     },
     footer: {
-      backgroundColor: pallet.white,
+      backgroundColor: Pallet.white,
       display: 'flex',
       justifyContent: 'space-around',
       alignItems: 'center',

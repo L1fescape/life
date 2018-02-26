@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { View, TouchableHighlight, Text, TextInput, StyleSheet } from 'react-native'
 import { Counter as CounterModel, ButtonLayout } from 'life/state/counter'
+import { Pallet } from 'life/util/color'
 
 export interface PublicProps {
   counters: CounterModel[]
@@ -8,15 +9,6 @@ export interface PublicProps {
   decrement: any
   changeName: any
   layout: ButtonLayout
-}
-
-const pallet = {
-  white: '#F0EADC',
-  black: '#292B2E',
-  green: '#5E6259',
-  lightGreen: '#6a6d66',
-  gold: '#BB7C3E',
-  beige: '#E7D7C6',
 }
 
 export interface State {}
@@ -29,7 +21,7 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => (
   <TouchableHighlight
     style={styles.button}
-    underlayColor={pallet.lightGreen}
+    underlayColor={Pallet.lightGreen}
     onPress={props.onPress}>
       <Text style={styles.buttonText}>{props.text}</Text>
   </TouchableHighlight>
@@ -38,8 +30,8 @@ const Button = (props: ButtonProps) => (
 export class Counter extends React.Component<PublicProps, State> {
   render() {
     const { layout } = this.props
-    return [
-      ...this.props.counters.map((counter, index) => (
+    return (
+      this.props.counters.map((counter, index) => (
         <View key={index} style={styles.counter}>
           { layout === ButtonLayout.Outer && (
             <View style={[styles.buttons, styles.buttonsOuter]}>
@@ -70,8 +62,8 @@ export class Counter extends React.Component<PublicProps, State> {
             placeholder={`Player ${index + 1}`}
             value={counter.name} />
         </View>
-      )),
-    ]
+      ))
+    )
   }
 }
 
@@ -85,7 +77,7 @@ const styles = StyleSheet.create({
   },
   container: {
     display: 'flex',
-    backgroundColor: pallet.white,
+    backgroundColor: Pallet.white,
     borderRadius: 2,
     padding: counterPadding,
   },
@@ -104,7 +96,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flexGrow: 1,
-    backgroundColor: pallet.green,
+    backgroundColor: Pallet.green,
     display: 'flex',
     borderRadius: 2,
     alignItems: 'center',
@@ -114,16 +106,16 @@ const styles = StyleSheet.create({
     paddingBottom: counterPadding * 2,
   },
   buttonText: {
-    color: pallet.white,
+    color: Pallet.white,
     fontSize: 20,
   },
   nameText: {
-    color: pallet.white,
+    color: Pallet.white,
     textAlign: 'center',
     paddingTop: counterPadding,
   },
   buttonSpacer: {
     width: counterPadding,
-    backgroundColor: pallet.white,
+    backgroundColor: Pallet.white,
   },
 })
