@@ -1,0 +1,70 @@
+{
+  "name": "life",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn && yarn build && yarn start:cli",
+    "start:cli": "node node_modules/react-native/local-cli/cli.js start",
+    "start:ios": "concurrently -r 'yarn watch' 'react-native run-ios'",
+    "start:android": "concurrently -r 'yarn watch' 'react-native run-android'",
+    "start:web": "yarn build:web && node web/server.js",
+    "build": "yarn clean && yarn tsc",
+    "build:ios": "yarn build && react-native bundle --entry-file='index.js' --bundle-output='ios/life/main.jsbundle' --dev=false --platform='ios' --assets-dest='ios/life/Images.xcassets'",
+    "build:android": "yarn build && react-native bundle --entry-file='index.js' --bundle-output='android/app/src/main/assets/index.android.bundle' --dev=false --platform='android' --assets-dest='android/app/src/main/res/'",
+    "build:web": "cd web && webpack",
+    "dev:ios": "yarn start:ios",
+    "dev:android": "yarn start:android",
+    "dev:web": "cd web && webpack-dev-server --hot --inline",
+    "release:android": "yarn build:android && cd android && ./gradlew assembleRelease",
+    "tsc": "tsc",
+    "clean": "rimraf lib",
+    "lint": "tslint src/**/*.ts",
+    "watch": "yarn build -w"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-native": "^0.53.0",
+    "react-native-vector-icons": "^4.5.0",
+    "react-native-web": "^0.3.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "typescript": "^2.5.3"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.10",
+    "@types/react-dom": "^16.0.1",
+    "@types/react-native": "^0.52.5",
+    "@types/react-native-vector-icons": "^4.4.2",
+    "@types/react-redux": "^5.0.15",
+    "@types/react-router": "^4.0.15",
+    "@types/react-router-dom": "^4.0.8",
+    "@types/redux": "^3.6.0",
+    "awesome-typescript-loader": "^3.2.3",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "copy-webpack-plugin": "^4.2.1",
+    "css-loader": "^0.28.7",
+    "express": "^4.16.2",
+    "file-loader": "^1.1.5",
+    "font-awesome": "^4.7.0",
+    "haul": "^1.0.0-beta.13",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.6",
+    "source-map-loader": "^0.2.2",
+    "style-loader": "^0.19.0",
+    "tslint": "^5.8.0",
+    "webpack": "^3.7.1",
+    "webpack-dev-server": "^2.9.2"
+  },
+  "rnpm": {
+    "assets": [
+      "assets/fonts"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "jsx": "react",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
+    "noImplicitAny": false,
+    "baseUrl": "./src",
+    "paths": {
+      "life": ["../../src"],
+      "life/*": ["../../src/*"],
+      "react-native": ["../../node_modules/react-native-web"],
+      "react-native/*": ["../../node_modules/react-native-web/*"]
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": [
+      "react",
+      "react-native"
+    ]
+  },
+  "include": [
+    "./src/**/*",
+    "../src/**/*",
+  ],
+  "exclude": [
+    "./src/**/*.test.tsx"
+  ]
+}
